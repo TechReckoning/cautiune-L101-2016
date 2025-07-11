@@ -342,7 +342,7 @@ const Step3_2: React.FC<{
               27.334.460 lei pentru concesiuni de lucrări sau servicii
             </label>
             <div style={{ fontSize: 13, color: "#222", marginTop: 8 }}>
-              Pragurile valorice prevăzute la art. 12 alin. (1) din Legea nr. 99/2016.
+              Pragul valoric prevăzut la art. 11 alin. (1) din Legea nr. 100/2016.
             </div>
           </div>
         )}
