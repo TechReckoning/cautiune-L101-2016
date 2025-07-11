@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 const Step1: React.FC<{
@@ -445,14 +443,14 @@ const App: React.FC = () => {
   const handleCalc = () => {
     const valoare = parseFloat(step1.valoare.replace(/,/g, '.'));
     const prag = Number(step3_2.prag);
-    const provizorie = Math.round(valoare * 0.02);
+    const provizorie = +(valoare * 0.02).toFixed(2);
     const plafon = calcPlafon(valoare, prag, step2.tipContestatie!);
     const finala = Math.min(provizorie, plafon);
     let explanation = "";
     if (provizorie > plafon) {
-      explanation = `Cauțiunea provizorie (${provizorie.toLocaleString('ro-RO')} lei) depășește plafonul maxim aplicabil (${plafon.toLocaleString('ro-RO')} lei), deci cauțiunea finală este plafonată.`;
+      explanation = `Cauțiunea provizorie (${provizorie.toLocaleString('ro-RO', {minimumFractionDigits: 2, maximumFractionDigits: 2})} lei) depășește plafonul maxim aplicabil (${plafon.toLocaleString('ro-RO')} lei), deci cauțiunea finală este plafonată.`;
     } else {
-      explanation = `Cauțiunea provizorie (${provizorie.toLocaleString('ro-RO')} lei) este sub plafonul maxim aplicabil (${plafon.toLocaleString('ro-RO')} lei), deci cauțiunea finală este egală cu cea provizorie.`;
+      explanation = `Cauțiunea provizorie (${provizorie.toLocaleString('ro-RO', {minimumFractionDigits: 2, maximumFractionDigits: 2})} lei) este sub plafonul maxim aplicabil (${plafon.toLocaleString('ro-RO')} lei), deci cauțiunea finală este egală cu cea provizorie.`;
     }
     setResult({ provizorie, plafon, finala, explanation });
   };
@@ -503,10 +501,10 @@ const App: React.FC = () => {
           fontFamily: 'Montserrat, sans-serif',
         }}>
           <div style={{ fontWeight: 700, fontSize: 20, marginBottom: 12 }}>
-            Cauțiunea finală: {result.finala.toLocaleString('ro-RO')} lei
+            Cauțiunea finală: {result.finala.toLocaleString('ro-RO', {minimumFractionDigits: 2, maximumFractionDigits: 2})} lei
           </div>
           <div style={{ fontSize: 16, marginBottom: 8 }}>
-            Cauțiune provizorie: {result.provizorie.toLocaleString('ro-RO')} lei
+            Cauțiune provizorie: {result.provizorie.toLocaleString('ro-RO', {minimumFractionDigits: 2, maximumFractionDigits: 2})} lei
           </div>
           <div style={{ fontSize: 16, marginBottom: 8 }}>
             Plafon maxim aplicabil: {result.plafon.toLocaleString('ro-RO')} lei
